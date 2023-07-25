@@ -5,6 +5,14 @@ on:
     branches:
       - master
   workflow_dispatch:
+      inputs:
+        name:
+          type: choice
+          description: Who to run
+          options: 
+          - build
+          - test
+          - deploy
 
 jobs:
   build:
