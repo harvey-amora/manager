@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      -name : check file path
+      - name: check file path
         run: |
           ll -ltra
       - name: Checkout repository
