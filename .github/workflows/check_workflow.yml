@@ -14,10 +14,14 @@ jobs:
         run: |
           pwd
           ls -ltra
-      - name: Checkout repository
+      - name: Install Node JS
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: AWS Backup
+        run: |
+          aws s3 sync s3://buckettesters44 s3://buckettesters55
       - name: AWS S3 SYNC
         run: |
           aws s3 sync ./dist s3://buckettesters44
