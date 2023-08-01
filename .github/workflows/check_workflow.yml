@@ -11,11 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         run: |
-          ls
-      - uses: actions/setup-node@v3
+          lL -ltra
+      - name: Checkout repository
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm test
+        run: npm ci
+        run: npm test
       # Add build steps if needed, e.g., compiling your project
 
