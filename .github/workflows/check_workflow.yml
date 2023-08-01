@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      -name : check file path
         run: |
-          lL -ltra
+          ll -ltra
       - name: Checkout repository
         uses: actions/setup-node@v3
         with:
