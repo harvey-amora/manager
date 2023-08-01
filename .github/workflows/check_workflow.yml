@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: check file path
         run: |
+          pwd
           ls -ltra
       - name: Checkout repository
         uses: actions/setup-node@v3
