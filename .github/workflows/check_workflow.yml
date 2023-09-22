@@ -32,7 +32,7 @@ jobs:
       name: release
     runs-on: ubuntu-latest
     steps:
-      - name: AWS Backup1
+      - name: AWS Backup
         
         run: |
           aws s3 sync s3://buckettesters44 s3://buckettesters55
