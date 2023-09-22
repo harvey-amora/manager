@@ -21,6 +21,8 @@ jobs:
 
   release:
     needs: build
+    environment:
+      name: release
     runs-on: ubuntu-latest
     steps:
       - name: AWS Backup1
