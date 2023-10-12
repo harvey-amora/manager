@@ -1,7 +1,15 @@
 name: Test Dependencies
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      deployment:
+        type: choice
+        description: Select Env
+        required: true
+        default: 'release'
+        options:
+        - release
     
 
 jobs:
@@ -29,7 +37,7 @@ jobs:
   release:
     needs: build
     environment:
-      name: release
+      name: ${{ inputs.deployment }}
     runs-on: ubuntu-latest
     steps:
       - name: AWS Backup
