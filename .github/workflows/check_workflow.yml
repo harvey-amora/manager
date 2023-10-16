@@ -10,6 +10,7 @@ on:
         default: 'release'
         options:
         - release
+        - build
 
     
 
@@ -39,7 +40,7 @@ jobs:
   release:
     needs: build
     environment:
-      name: ${{ inputs.deployment }}
+      name: ${{ inputs.deployment }}-build
     runs-on: ubuntu-latest
     steps:
       - name: AWS Backup
