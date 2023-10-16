@@ -10,6 +10,7 @@ on:
         default: 'release'
         options:
         - release
+        - build
 
     
 
