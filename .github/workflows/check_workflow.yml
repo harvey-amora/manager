@@ -10,7 +10,9 @@ on:
         default: 'release'
         options:
         - release
-  push: 'master'
+  push:
+    branches:
+      - master
     
 
 jobs:
