@@ -36,6 +36,9 @@ jobs:
         with:
           name: my-artifact
           path: file1.txt
+      - name: Check node version
+        run: |
+          node -v
 
   release:
     needs: build
