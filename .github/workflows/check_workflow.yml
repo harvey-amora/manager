@@ -19,9 +19,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: |
+<<<<<<< HEAD
       contains(${{ inputs.deployment }}, 'build') || 
       (contains(${{ inputs.deployment }}, 'release') && github.ref == 'refs/heads/master') ||
       (contains(${{ inputs.deployment }}, 'stage') && github.ref == 'refs/heads/master')
+=======
+      contains(${{ inputs.deployment }}, build) || 
+      (contains(${{ inputs.deployment }}, release) && github.ref == 'refs/heads/master') ||
+      (contains(${{ inputs.deployment }}, stage) && github.ref == 'refs/heads/master')
+>>>>>>> 043eec7dc5aba85c88c76f42d247a97b7e3348b2
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
