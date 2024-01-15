@@ -7,21 +7,24 @@ on:
         type: choice
         description: Select Env
         required: true
-        default: 'release'
+        default: 'dev'
         options:
-        - release
-        - build
+        - prod
+        - dev
         - stage
 
     
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     if: |
-      contains(${{ inputs.deployment }}, build) || 
-      (contains(${{ inputs.deployment }}, release) && github.ref == 'refs/heads/master') ||
-      (contains(${{ inputs.deployment }}, stage) && github.ref == 'refs/heads/master')
+        (github.ref == 'refs/heads/main' && inputs.deployment == 'prod') ||
+        (github.ref == 'refs/heads/main' && inputs.deployment == 'stage') ||
+        (github.ref == 'refs/heads/' && inputs.deployment == 'dev')
+     
+    runs-on: ubuntu-latest
+    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
