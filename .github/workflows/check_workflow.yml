@@ -10,13 +10,18 @@ on:
         default: 'release'
         options:
         - release
+        - build
+        - stage
 
     
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: |
+      contains(${{ inputs.deployment }}, 'build') || 
+      (contains(${{ inputs.deployment }}, 'release') && github.ref == 'refs/heads/master') ||
+      (contains(${{ inputs.deployment }}, 'stage') && github.ref == 'refs/heads/master')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -35,11 +40,14 @@ jobs:
         with:
           name: my-artifact
           path: file1.txt
+      - name: Check node version
+        run: |
+          node -v
 
   release:
     needs: build
     environment:
-      name: ${{ inputs.deployment }}
+      name: ${{ inputs.deployment }}-build
     runs-on: ubuntu-latest
     steps:
       - name: AWS Backup
