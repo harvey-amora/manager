@@ -7,10 +7,10 @@ on:
         type: choice
         description: Select Env
         required: true
-        default: 'release'
+        default: 'dev'
         options:
-        - release
-        - build
+        - prod
+        - dev
         - stage
 
     
@@ -18,8 +18,9 @@ on:
 jobs:
   build:
     if: |
-      (${{ inputs.deployment }} == 'build' && github.ref == 'refs/heads/') || 
-      github.ref == 'refs/heads/master'
+        (github.ref == 'refs/heads/main' && inputs.deployment == 'prod') ||
+        (github.ref == 'refs/heads/main' && inputs.deployment == 'stage') ||
+        (github.ref == 'refs/heads/' && inputs.deployment == 'dev')
      
     runs-on: ubuntu-latest
     
