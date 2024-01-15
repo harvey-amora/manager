@@ -19,9 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: |
-      contains(${{ inputs.deployment }}, 'build') || 
-      (contains(${{ inputs.deployment }}, 'release') && github.ref == 'refs/heads/master') ||
-      (contains(${{ inputs.deployment }}, 'stage') && github.ref == 'refs/heads/master')
+      ${{ inputs.deployment }} == 'build' || 
+      (${{ inputs.deployment }} == 'release' && github.ref == 'refs/heads/master') ||
+      (${{ inputs.deployment }} == 'stage' && github.ref == 'refs/heads/master')
 
     steps:
       - name: Checkout repository
