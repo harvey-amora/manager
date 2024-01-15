@@ -11,13 +11,17 @@ on:
         options:
         - release
         - build
+        - stage
 
     
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: |
+      contains(${{ inputs.deployment }}, build) || 
+      contains(${{ inputs.deployment }}, release) && github.ref == 'refs/heads/master' ||
+      contains(${{ inputs.deployment }}, stage) && github.ref == 'refs/heads/master'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
