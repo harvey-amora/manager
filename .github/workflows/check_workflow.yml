@@ -18,9 +18,9 @@ on:
 jobs:
   build:
     if: |
-      ${{ inputs.deployment }} == 'build' || 
-      (${{ inputs.deployment }} == 'release' && github.ref == 'refs/heads/master') ||
-      (${{ inputs.deployment }} == 'stage' && github.ref == 'refs/heads/master')
+      (${{ inputs.deployment }} == 'build' && github.ref == 'refs/heads/') || 
+      github.ref == 'refs/heads/master'
+     
     runs-on: ubuntu-latest
     
 
