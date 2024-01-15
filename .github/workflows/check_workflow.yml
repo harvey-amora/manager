@@ -17,11 +17,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     if: |
       ${{ inputs.deployment }} == 'build' || 
       (${{ inputs.deployment }} == 'release' && github.ref == 'refs/heads/master') ||
       (${{ inputs.deployment }} == 'stage' && github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    
 
     steps:
       - name: Checkout repository
